@@ -26,7 +26,7 @@ services:
      links:
         - db:mysql
         - redis
-     image: drupal:apache
+     image: wechat:laravel56
      network_mode: "bridge"
      restart: always
      # ports:
