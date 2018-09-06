@@ -33,7 +33,6 @@ services:
      #    - 8000:80
      volumes:
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
-        - ./html:/var/www/html
      environment:
         APP_ENV: production
         VIRTUAL_HOST: wechat.yongbuzhixi.com
