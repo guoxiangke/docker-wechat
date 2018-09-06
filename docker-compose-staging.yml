@@ -1,0 +1,44 @@
+version: '3.3'
+
+services:
+   redis:
+     image: redis:latest
+     restart: always
+     network_mode: "bridge"
+     environment:
+       REDIS_PORT: 6379
+   db:
+     image: mariadb:latest
+     volumes:
+       - db_data:/var/lib/mysql
+       - ./sql:/sql
+     restart: always
+     network_mode: "bridge"
+     environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: wechat
+       MYSQL_USER: wechat
+       MYSQL_PASSWORD: wechat
+   laravel:
+     depends_on:
+        - db
+        - redis
+     links:
+        - db:mysql
+        - redis
+     # image: drupal:apache
+     build: ./laravel
+     network_mode: "bridge"
+     restart: always
+     volumes:
+        - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+        - ./html:/var/www/html
+     environment:
+        APP_ENV: staging
+        VIRTUAL_HOST: staging.wechat.yongbuzhixi.com
+        LETSENCRYPT_HOST: staging.wechat.yongbuzhixi.com
+        LETSENCRYPT_EMAIL: dale.tel@139.com
+
+
+volumes:
+    db_data:
