@@ -5,10 +5,8 @@ services:
      image: redis:latest
      restart: always
      network_mode: "bridge"
-     environment:
-       REDIS_PORT: 6379
    db:
-     image: mariadb:latest
+     image: mysql:latest
      volumes:
        - db_data:/var/lib/mysql
        - ./sql:/sql
@@ -26,17 +24,26 @@ services:
      links:
         - db:mysql
         - redis
-     image: wechat:laravel56
+     image: guoxiangke/wechat:laravel56
+     # build: ./laravel
      network_mode: "bridge"
      restart: always
-     # ports:
-     #    - 8000:80
      volumes:
+        - /tmp:/tmp
+        - ./laravel/cert:/var/www/html/cert:ro
+        - ./laravel/app:/var/www/html/app
+        - ./laravel/config:/var/www/html/config
+        - ./laravel/database:/var/www/html/database
+        - ./laravel/resources:/var/www/html/resources
+        - ./laravel/tests:/var/www/html/tests
+        - ./laravel/.env:/var/www/html/.env:ro
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+        # - ./html:/var/www/html/ #local dev
      environment:
+        REDIS_PORT: 6379
         APP_ENV: production
-        VIRTUAL_HOST: wechat.yongbuzhixi.com
-        LETSENCRYPT_HOST: wechat.yongbuzhixi.com
+        VIRTUAL_HOST: wechat.qq.yongbuzhixi.com #wechat.gg.daxiangyingyu.com
+        LETSENCRYPT_HOST: wechat.qq.yongbuzhixi.com
         LETSENCRYPT_EMAIL: dale.tel@139.com
 
 

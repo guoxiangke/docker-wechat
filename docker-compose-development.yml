@@ -28,6 +28,8 @@ services:
      # build: ./laravel
      network_mode: "bridge"
      restart: always
+     ports:
+        - 8000:80
      volumes:
         - /tmp:/tmp
         - ./laravel/cert:/var/www/html/cert:ro
@@ -36,16 +38,12 @@ services:
         - ./laravel/database:/var/www/html/database
         - ./laravel/resources:/var/www/html/resources
         - ./laravel/tests:/var/www/html/tests
-        - ./laravel/.env.staging:/var/www/html/.env.staging:ro
+        - ./laravel/.env.development:/var/www/html/.env.development:ro
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
         # - ./html:/var/www/html/ #local dev
      environment:
         REDIS_PORT: 6379
-        APP_ENV: staging
-        VIRTUAL_HOST: wechat.staging.yongbuzhixi.com #wechat.gg.daxiangyingyu.com
-        LETSENCRYPT_HOST: wechat.staging.yongbuzhixi.com
-        LETSENCRYPT_EMAIL: dale.tel@139.com
-
+        APP_ENV: development
 
 volumes:
     db_data:
