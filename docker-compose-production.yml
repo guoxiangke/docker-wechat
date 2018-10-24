@@ -38,7 +38,8 @@ services:
         - ./laravel/tests:/var/www/html/tests
         - ./laravel/.env:/var/www/html/.env:ro
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
-        # - ./html:/var/www/html/ #local dev
+        #patches for aws
+        - ./patches/CurlMultiHandler.php:/var/www/html/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php:ro
      environment:
         REDIS_PORT: 6379
         APP_ENV: production

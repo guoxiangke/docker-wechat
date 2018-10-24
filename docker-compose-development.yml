@@ -40,7 +40,6 @@ services:
         - ./laravel/tests:/var/www/html/tests
         - ./laravel/.env.development:/var/www/html/.env.development:ro
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
-        # - ./html:/var/www/html/ #local dev
      environment:
         REDIS_PORT: 6379
         APP_ENV: development
