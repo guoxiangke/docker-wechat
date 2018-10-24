@@ -36,9 +36,9 @@ services:
         - ./laravel/database:/var/www/html/database
         - ./laravel/resources:/var/www/html/resources
         - ./laravel/tests:/var/www/html/tests
-        - ./laravel/.env:/var/www/html/.env:ro
+        - ./laravel/.env.production:/var/www/html/.env
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
-        #patches for aws
+        #patches for aws: https://github.com/overtrue/wechat/issues/1356
         - ./patches/CurlMultiHandler.php:/var/www/html/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php:ro
      environment:
         REDIS_PORT: 6379
