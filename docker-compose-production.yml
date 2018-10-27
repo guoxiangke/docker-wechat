@@ -24,18 +24,13 @@ services:
      links:
         - db:mysql
         - redis
-     image: guoxiangke/wechat:laravel56
-     # build: ./laravel
+     # image: guoxiangke/wechat:laravel56
+     build: ./laravel
      network_mode: "bridge"
      restart: always
      volumes:
         - /tmp:/tmp
         - ./laravel/cert:/var/www/html/cert:ro
-        - ./laravel/app:/var/www/html/app
-        - ./laravel/config:/var/www/html/config
-        - ./laravel/database:/var/www/html/database
-        - ./laravel/resources:/var/www/html/resources
-        - ./laravel/tests:/var/www/html/tests
         - ./laravel/.env.production:/var/www/html/.env
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
         #patches for aws: https://github.com/overtrue/wechat/issues/1356
@@ -43,8 +38,8 @@ services:
      environment:
         REDIS_PORT: 6379
         APP_ENV: production
-        VIRTUAL_HOST: wechat.qq.yongbuzhixi.com #wechat.gg.daxiangyingyu.com
-        LETSENCRYPT_HOST: wechat.qq.yongbuzhixi.com
+        VIRTUAL_HOST: wechat.yongbuzhixi.com #wechat.gg.daxiangyingyu.com
+        LETSENCRYPT_HOST: wechat.yongbuzhixi.com
         LETSENCRYPT_EMAIL: dale.tel@139.com
 
 
