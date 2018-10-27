@@ -7,6 +7,7 @@ services:
      network_mode: "bridge"
    db:
      image: mysql:latest
+     command: --default-authentication-plugin=mysql_native_password
      volumes:
        - db_data:/var/lib/mysql
        - ./sql:/sql
