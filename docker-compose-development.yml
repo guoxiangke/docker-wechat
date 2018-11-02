@@ -38,6 +38,7 @@ services:
         - ./laravel/config:/var/www/html/config
         - ./laravel/database:/var/www/html/database
         - ./laravel/resources:/var/www/html/resources
+        - ./laravel/routes:/var/www/html/routes
         - ./laravel/tests:/var/www/html/tests
         - ./laravel/.env.development:/var/www/html/.env.development:ro
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
