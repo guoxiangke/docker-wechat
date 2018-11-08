@@ -30,12 +30,15 @@ services:
      network_mode: "bridge"
      restart: always
      volumes:
+        - ./laravel/storage/app:/var/www/html/storage/app
         - /tmp:/tmp
         - ./laravel/cert:/var/www/html/cert:ro
         - ./laravel/.env.production:/var/www/html/.env
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
         #patches for aws: https://github.com/overtrue/wechat/issues/1356
         - ./patches/CurlMultiHandler.php:/var/www/html/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php:ro
+        #https://github.com/rinvex/laravel-subscriptions/issues/42
+        - ./patches/Period.php:/var/www/html/vendor/rinvex/subscriptions/src/Services/Period.php:ro
      environment:
         REDIS_PORT: 6379
         APP_ENV: production

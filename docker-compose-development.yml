@@ -32,6 +32,7 @@ services:
      ports:
         - 8000:80
      volumes:
+        - ./laravel/storage/app:/var/www/html/storage/app
         - /tmp:/tmp
         - ./laravel/cert:/var/www/html/cert:ro
         - ./laravel/app:/var/www/html/app
@@ -42,6 +43,8 @@ services:
         - ./laravel/tests:/var/www/html/tests
         - ./laravel/.env.development:/var/www/html/.env.development:ro
         - ./config/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+        #https://github.com/rinvex/laravel-subscriptions/issues/42
+        - ./patches/Period.php:/var/www/html/vendor/rinvex/subscriptions/src/Services/Period.php:ro
      environment:
         REDIS_PORT: 6379
         APP_ENV: development
