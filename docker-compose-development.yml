@@ -32,7 +32,7 @@ services:
      ports:
         - 8000:80
      volumes:
-        - ./laravel/storage/app:/var/www/html/storage/app
+        - ./laravel/storage/app:/var/www/html/storage/app:rw
         - /tmp:/tmp
         - ./laravel/cert:/var/www/html/cert:ro
         - ./laravel/app:/var/www/html/app

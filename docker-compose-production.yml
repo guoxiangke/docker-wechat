@@ -30,7 +30,7 @@ services:
      network_mode: "bridge"
      restart: always
      volumes:
-        - ./laravel/storage/app:/var/www/html/storage/app
+        - ./laravel/storage/app:/var/www/html/storage/app:rw
         - /tmp:/tmp
         - ./laravel/cert:/var/www/html/cert:ro
         - ./laravel/.env.production:/var/www/html/.env
