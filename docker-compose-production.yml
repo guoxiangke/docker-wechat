@@ -10,7 +10,7 @@ services:
      command: --default-authentication-plugin=mysql_native_password
      volumes:
        - db_data:/var/lib/mysql
-       - ./sql:/sql
+       - /tmp:/sql
      restart: always
      network_mode: "bridge"
      environment:
@@ -25,8 +25,8 @@ services:
      links:
         - db:mysql
         - redis
-     # image: guoxiangke/wechat:laravel56
-     build: ./laravel
+     image: guoxiangke/wechat:laravel56
+     # build: ./laravel
      network_mode: "bridge"
      restart: always
      volumes:
